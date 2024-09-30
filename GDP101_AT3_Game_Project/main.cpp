@@ -34,16 +34,16 @@ void Intro()
             system("cls"); //Clears screen;
             cout << "\033[0;37m"; //Makes text white
             cout << "Let's play.\n";
-            _Thrd_sleep_for(1000);
+            Sleep(1000);
             cout << ".";
-            _Thrd_sleep_for(1000);
+            Sleep(1000);
             cout << ".";
-            _Thrd_sleep_for(1000);
+            Sleep(1000);
             cout << ".";
-            _Thrd_sleep_for(2000);
+            Sleep(2000);
             cout << "\n\033[0;31m"; //Makes text red
             cout << ":)";
-            _Thrd_sleep_for(2000);
+            Sleep(2000);
             system("cls"); //Clears screen;
             string momo =
                 "...........*UHWHН!hhhhН!?M88WHXХWWWWSW$o\n"
@@ -66,43 +66,45 @@ void Intro()
                 "...................*$$g$$$B$$eeeХWP0\n"
                 "........................*0$$$$M$$00F''\n";
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;37m"; //Makes text white
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;31m"; //Makes text red
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;37m"; //Makes text white
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;31m"; //Makes text red
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;37m"; //Makes text white
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
             cout << "\n\033[0;31m"; //Makes text red
             cout << momo;
-            _Thrd_sleep_for(50);
+            Sleep(50);
             system("cls"); //Clears screen;
         }
         else
         {
             "\n\033[0;37m"; //Makes text white
             cout << "\nFarewell\n\n";
+            system("pause");
             exit;
         }
     }
     else
     {
         cout << "\nFarewell\n\n";
+        system("pause");
         exit;
     }
 }
