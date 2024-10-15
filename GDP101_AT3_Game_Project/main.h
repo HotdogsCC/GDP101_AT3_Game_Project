@@ -2,3 +2,4 @@
 
 void Intro();
 void HomeScreen();
+void Game();

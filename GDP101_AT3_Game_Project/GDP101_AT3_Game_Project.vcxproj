@@ -128,9 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Room.cpp" />
+    <ClCompile Include="SafeRoom.cpp" />
+    <ClCompile Include="TalkRoom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
+    <ClInclude Include="Room.h" />
+    <ClInclude Include="SafeRoom.h" />
+    <ClInclude Include="TalkRoom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

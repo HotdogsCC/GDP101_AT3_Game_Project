@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include "main.h"
+#include "SafeRoom.h"
 
 using std::cout;
 using std::cin;
@@ -9,15 +10,15 @@ using std::string;
 
 int main()
 {
-    Intro();
-    HomeScreen();
+    //Intro();
+    Game();
 }
 
 void Intro()
 {
     cout << "This game is not suitable for children or those who are easily disturbed.\n\n";
-    cout << "This game contains uncomfortable themes, sounds, and flickering lights.\n\n";
-    cout << "Type 'Ok' if you wish to continue. Typing anything else will close this game. You must input at least 1 character.\n\n";
+    cout << "This game contains uncomfortable themes and flickering lights.\n\n";
+    cout << "Type 'Ok' if you wish to continue.\nTyping anything else will close this game. You must input at least 1 character.\n\n";
 
     std::string acceptanceInput;
     cin >> acceptanceInput;
@@ -92,6 +93,8 @@ void Intro()
             cout << momo;
             Sleep(50);
             system("cls"); //Clears screen;
+
+            HomeScreen();
         }
         else
         {
@@ -129,5 +132,36 @@ void HomeScreen()
         "\\____/ |___/  \\___| \\__,_|| .__ / \\___| \n"
         "                          | |\n"
         "                          |_| \n";
-    cout << title;
+    cout << title << "\n\nPress enter to continue\n";
+
+    system("pause");
+    Game();
+}
+
+void Game()
+{
+    system("cls");
+    SafeRoom room00;
+    room00.CanMoveEast();
+    room00.CanMoveSouth();
+    Room room01;
+    Room room02;
+    Room room03;
+    Room room10;
+    Room room11;
+    Room room12;
+    Room room13;
+    Room room20;
+    Room room21;
+    Room room22;
+    Room room23;
+    Room room30;
+    Room room31;
+    Room room32;
+    Room room33;
+
+    Room rooms[4][4] = { room00, room01, room02, room03, room10, room11, room12, room13,room20,room21,room22,room23,room30,room31,room32,room33 };
+    rooms[0][0].OutputDescription();
+    int myInt = room00.DirectionInput();
+    system("pause");
 }
