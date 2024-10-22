@@ -1,8 +1,9 @@
 ﻿#include <iostream>
 #include <string>
 #include <windows.h>
+#include <mmsystem.h>
 #include "main.h"
-#include "SafeRoom.h"
+#include "Rooms.h"
 
 using std::cout;
 using std::cin;
@@ -46,6 +47,7 @@ void Intro()
             cout << ":)";
             Sleep(2000);
             system("cls"); //Clears screen;
+            PlaySound(TEXT("Jumpscare Sound Effect"), NULL, SND_FILENAME | SND_ASYNC);
             string momo =
                 "...........*UHWHН!hhhhН!?M88WHXХWWWWSW$o\n"
                 ".......X * #M@$Н!eeeeНXНM$$$$$$WWxХWWW9S0\n"
@@ -115,6 +117,7 @@ void Intro()
 void HomeScreen()
 {
     system("cls");
+    PlaySound(TEXT("Persona 5 OST 11 - To Another World.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
     string title =
         "______\n"
         "| _  \\\n"
@@ -141,13 +144,25 @@ void HomeScreen()
 void Game()
 {
     system("cls");
+    //Room Instantiation
+
+    // COLUMN MAJOR
+     
     SafeRoom room00;
     room00.CanMoveEast();
     room00.CanMoveSouth();
     Room room01;
     Room room02;
     Room room03;
-    Room room10;
+    TalkRoom room10("You enter the room. It's dark. You try to broaden your eyes, but to no avail.\n"
+        "You take a deep breathe, the odor of urine and feaces trailing in. You hold in your gag.\n\n"
+
+        "Your eyes begin to adjust, in the corner you notice a troll.\n"
+        "You begin to look for a hiding spot, but he calls out to you.\n\n"
+
+        "'Don't worry', the troll says. 'I am not going to hurt you.'\n"
+        "His tone seems genuine, but something is off. You can make out a smirk, his yellow teeth spiking out.\n\n"
+        "What do you do?\n");
     Room room11;
     Room room12;
     Room room13;
@@ -159,9 +174,18 @@ void Game()
     Room room31;
     Room room32;
     Room room33;
-
+    PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
     Room rooms[4][4] = { room00, room01, room02, room03, room10, room11, room12, room13,room20,room21,room22,room23,room30,room31,room32,room33 };
     rooms[0][0].OutputDescription();
-    int myInt = room00.DirectionInput();
+    int direction = room00.DirectionInput();
+
+    //If east
+    if (direction == 1)
+    {
+        PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        rooms[1][0].OutputDescription();
+        int direction = room10.DirectionInput();
+    }
+
     system("pause");
 }

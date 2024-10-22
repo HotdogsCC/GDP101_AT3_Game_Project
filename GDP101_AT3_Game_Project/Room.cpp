@@ -5,6 +5,7 @@ using std::cin;
 
 void Room::OutputDescription()
 {
+	system("cls");
 	cout << this->description;
 }
 
@@ -17,19 +18,19 @@ int Room::DirectionInput()
 
 		if (input.compare("North") == 0 && canMoveNorth)
 		{
-			return 1;
+			return 0;
 		}
 		else if (input.compare("East") == 0 && canMoveEast)
 		{
-			return 2;
+			return 1;
 		}
 		else if (input.compare("South") == 0 && canMoveSouth)
 		{
-			return 3;
+			return 2;
 		}
 		else if (input.compare("West") == 0 && canMoveWest)
 		{
-			return 4;
+			return 3;
 		}
 		else
 		{
@@ -61,4 +62,11 @@ void Room::CanMoveSouth()
 void Room::CanMoveWest()
 {
 	canMoveWest = true;
+}
+
+//Runs the gameplay of the room. Returns the direction for the next room (1,2,3,4) -> (N,E,S,W)
+int Room::RunRoom()
+{
+	OutputDescription();
+	return DirectionInput();
 }

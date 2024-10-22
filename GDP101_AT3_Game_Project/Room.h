@@ -8,6 +8,7 @@ class Room
 public:
 	void OutputDescription();
 	int DirectionInput();
+	virtual int RunRoom();
 
 	void SetDescription(string _str);
 
