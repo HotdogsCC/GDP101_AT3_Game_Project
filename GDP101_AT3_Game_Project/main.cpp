@@ -11,11 +11,15 @@ using std::string;
 
 int main()
 {
-    //Intro();
+    //Returns 0 to start the game
+    //if (Intro() == 0)
+    //{
+    //    HomeScreen();
+    //}
     Game();
 }
 
-void Intro()
+int Intro()
 {
     cout << "This game is not suitable for children or those who are easily disturbed.\n\n";
     cout << "This game contains uncomfortable themes and flickering lights.\n\n";
@@ -96,21 +100,19 @@ void Intro()
             Sleep(50);
             system("cls"); //Clears screen;
 
-            HomeScreen();
+            return 0;
         }
         else
         {
             "\n\033[0;37m"; //Makes text white
             cout << "\nFarewell\n\n";
-            system("pause");
-            exit;
+            return 1;
         }
     }
     else
     {
         cout << "\nFarewell\n\n";
-        system("pause");
-        exit;
+        return 1;
     }
 }
 
@@ -151,7 +153,12 @@ void Game()
     SafeRoom room00;
     room00.CanMoveEast();
     room00.CanMoveSouth();
-    Room room01;
+    DeadEnd room01;
+    room01.SetDescription("You enter the room. It's cold and damp.\n"
+    "Looking around, you notice nothing of interest.\n"
+    "There's nothing inherently dangerous here, nor is there a reason to stay.\n"
+    
+    "You should probably go back.\n");
     Room room02;
     Room room03;
     TalkRoom room10("You enter the room. It's dark. You try to broaden your eyes, but to no avail.\n"
@@ -176,6 +183,37 @@ void Game()
     Room room33;
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
     Room rooms[4][4] = { room00, room01, room02, room03, room10, room11, room12, room13,room20,room21,room22,room23,room30,room31,room32,room33 };
+    
+    int col = 0;
+    int row = 0;
+    //game loop
+    while (true)
+    {
+        //Runs the room and returns the direction
+        int dir = rooms[col][row].RunRoom();
+        std::cout << dir;
+        PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        //Processes direction (1,2,3,4) -> (N,E,S,W)
+        switch (dir)
+        {
+        case 1:
+            row += -1;
+            break;
+        case 2:
+            col += 1;
+            break;
+        case 3:
+            row += 1;
+            break;
+        case 4:
+            col += -1;
+            break;
+        default:
+            std::cout << "what";
+            return;
+        }
+    }
+
     rooms[0][0].OutputDescription();
     int direction = room00.DirectionInput();
 
@@ -185,6 +223,13 @@ void Game()
         PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
         rooms[1][0].OutputDescription();
         int direction = room10.DirectionInput();
+    }
+    //If south
+    else if (direction == 2)
+    {
+        PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        rooms[0][1].OutputDescription();
+        int direction = room01.DirectionInput();
     }
 
     system("pause");

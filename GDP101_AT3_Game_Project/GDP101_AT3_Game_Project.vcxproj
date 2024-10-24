@@ -143,12 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DeadEnd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SafeRoom.cpp" />
     <ClCompile Include="TalkRoom.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DeadEnd.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Rooms.h" />

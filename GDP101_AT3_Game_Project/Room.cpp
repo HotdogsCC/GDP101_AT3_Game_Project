@@ -18,19 +18,19 @@ int Room::DirectionInput()
 
 		if (input.compare("North") == 0 && canMoveNorth)
 		{
-			return 0;
+			return 1;
 		}
 		else if (input.compare("East") == 0 && canMoveEast)
 		{
-			return 1;
+			return 2;
 		}
 		else if (input.compare("South") == 0 && canMoveSouth)
 		{
-			return 2;
+			return 3;
 		}
 		else if (input.compare("West") == 0 && canMoveWest)
 		{
-			return 3;
+			return 4;
 		}
 		else
 		{

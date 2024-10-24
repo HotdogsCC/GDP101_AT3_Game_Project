@@ -1,5 +1,5 @@
 #pragma once
 
-void Intro();
+int Intro();
 void HomeScreen();
 void Game();
