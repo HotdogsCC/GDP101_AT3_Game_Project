@@ -4,7 +4,7 @@ class DeadEnd : public Room
 {
 public:
 	DeadEnd();
-	DeadEnd(string inputDesc, int previousRoom);
+	DeadEnd(int previousRoom);
 	int RunRoom() override;
 private:
 	int returnDir;

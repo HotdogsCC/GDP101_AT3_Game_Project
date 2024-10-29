@@ -19,8 +19,6 @@ public:
 
 protected:
 	string description = "Placeholder.\n";
-	int indexCol = 0;
-	int indexRow = 0;
 	
 private:
 	bool canMoveNorth = false;

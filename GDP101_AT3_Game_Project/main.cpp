@@ -12,17 +12,17 @@ using std::string;
 int main()
 {
     //Returns 0 to start the game
-    //if (Intro() == 0)
-    //{
-    //    HomeScreen();
-    //}
-    Game();
+    if (Intro() == 0)
+    {
+        HomeScreen();
+    }
+    //Game();
 }
 
 int Intro()
 {
-    cout << "This game is not suitable for children or those who are easily disturbed.\n\n";
-    cout << "This game contains uncomfortable themes and flickering lights.\n\n";
+    cout << "This game is not suitable for those who are easily discomforted, or suffer from epilepsy.\n\n";
+    cout << "This game is best enjoyed with audio, and in full screen.\n\n";
     cout << "Type 'Ok' if you wish to continue.\nTyping anything else will close this game. You must input at least 1 character.\n\n";
 
     std::string acceptanceInput;
@@ -30,6 +30,7 @@ int Intro()
 
     if (acceptanceInput == "Ok")
     {
+        PlaySound(TEXT("[Persona 4 OST] 10 - Who's there？"), NULL, SND_FILENAME | SND_ASYNC); //plays music
         cout << "\n\033[0;31m"; //Makes text red
         cout << "Are you sure? Type 'Ok' again.\n";
         cout << "\n\033[0;33m"; //Makes text yellow
@@ -143,6 +144,7 @@ void HomeScreen()
     Game();
 }
 
+
 void Game()
 {
     system("cls");
@@ -153,36 +155,104 @@ void Game()
     SafeRoom room00;
     room00.CanMoveEast();
     room00.CanMoveSouth();
-    DeadEnd room01;
-    room01.SetDescription("You enter the room. It's cold and damp.\n"
-    "Looking around, you notice nothing of interest.\n"
-    "There's nothing inherently dangerous here, nor is there a reason to stay.\n"
-    
-    "You should probably go back.\n");
+
+    //Constructor sets return direction (North)
+    DeadEnd room01(1);
+    room01.SetDescription("You enter the room. The same must from the previous room haunts this one, is there any escape?\n\n"
+        
+        "Looking around, you notice nothing of interest but something tugs at the corner of your brain. \n"
+        "Perhaps it's the smoky haze that has began to swarm all four corners, or that putrid smell of rotten dreams.\n"
+        "Either way, it's got your breath hastening and brain rapidly calculating an escape route.\n\n"
+
+        "There's nothing inherently dangerous here, you think but also nothing really of substance either.\n\n"
+
+        "Do you risk turning back and discovering what dangerous secrets may tantalise the very depths of your subconscious?\n"
+        "Or do you stay complacent in your somewhat primitive safe haven?\n"
+        "Do you dare journey into the seedy underbelly of the beast?\n\n"
+
+        "You should probably go back.\n\n");
+
     Room room02;
     Room room03;
-    TalkRoom room10("You enter the room. It's dark. You try to broaden your eyes, but to no avail.\n"
-        "You take a deep breathe, the odor of urine and feaces trailing in. You hold in your gag.\n\n"
 
-        "Your eyes begin to adjust, in the corner you notice a troll.\n"
-        "You begin to look for a hiding spot, but he calls out to you.\n\n"
+    //Deallocated in the class destructor
+    string* messages10 = new string[6];
+    messages10[0] = 
+        "You enter the room. It's dimly lit. You try to adjust your eyes to the slight increase of light, blinking rapidly but to no avail.\n"
+        "You take a deep breath, but you're met with the odour of urine and faeces instead of the expected cool fog. You attempt hold in your gag.\n\n";
+    messages10[1] = 
+        "Your eyes begin to adjust to the dim gloom, just as you notice the unmistakable olive rippled skin of a easternwich troll.\n"
+        "Your breath hitches, your heart pounding faster as you quickly scan your surroundings for any sign of substantial hiding spot before he sees you.\n"
+        "But alas, it's too late. His yellowed eyes have already spied you, a faint smirk arising from his thick purpled lips.\n\n";
+    messages10[2] = 
+        "'Don't worry', the troll purrs. 'I am not going to hurt you.'\n\n";
+    messages10[3] =
+        "His tone seems genuine, enough, but something lingers at the end of his phrase that turns your stomach just a little.\n"
+        "You decide the risk is just enticing enough to bare and continue to listen, plus you need to find someway to get out of here.\n\n";
+    messages10[4] =
+        "The beast lifts his chin in acknowledgement, his smirk spreading into a wide grin.\n"
+        "'Through the door behind me lies a dungeon which will lead you to the exit. The only exit point is through this dungeon.\n"
+        "However, guarding this dungeon is a fearsome knight who prays on innocent mortals, like yourself.\n" 
+        "If he catches you he will imprison you, keeping him as his own personal slave for all of eternality.'\n"
+        "You furrow your brow. All of eternity? How on earth are you supposed to escape?\n\n";
+    messages10[5] =
+        "Noticing your worry the troll assures you, bending down to meet your eye, his gigantic yellow orbs widening in reassurance.\n"
+        "Lucky for you the knight lost all his eyesight many moons ago in a brutal battle, as long as you sneak past and don't make a single sound he will never catch you.\n\n"
+        "You swallow hard and nod.Accepting your fate you advance to the next room";
+    TalkRoom room10(messages10, 6);
 
-        "'Don't worry', the troll says. 'I am not going to hurt you.'\n"
-        "His tone seems genuine, but something is off. You can make out a smirk, his yellow teeth spiking out.\n\n"
-        "What do you do?\n");
     Room room11;
     Room room12;
     Room room13;
-    Room room20;
+
+    string introMessages20 = 
+        "In front of you lie two cobblestoned paths.\n"
+        "One path winds all the way to the base of the knights throne while the other leads beyond your line of vison, half covered by... is that bones?\n"
+        "If so, they seem human.\n\n"
+
+        "Do you take the path infront of the knight, whom you’ve been told cannot see?\n"
+        "Or, take the path behind the knight covered in the bones of your predecessors and possibly soon yours.\n\n"
+        
+        "Enter 'Infront' or 'Behind': ";
+    string winMessages20 =
+        "Gulping, you tentively step one foot onto the bone trodden path, a bone immediately snapping under your weight.\n"
+        "You wince as the bone’s crunch reverberates off the stone walls but the knight doesn't react in the slightest.\n"
+        "Confused you take another step onto another pile of bones and another crunch, much louder this time.\n"
+        "Echoes around the room but yet no reaction from the knight.\n\n"
+
+        "The troll lied.\n\n"
+
+        "You leap forward in glee, advancing further through the room and around the Knight’s throne successfully without alerting him.\n"
+        "This quest will not be easy but you have to remember to keep your wits about you as you realise...\n\n"
+
+        "No one can be trusted.\n\n";
+    string loseMessages20 =
+        "\nReaching the throne you notice it is infact made up of a pile of bones, impossibly balanced almost like a very macabre Jenga.\n"
+        "You lean closer, attempting to get a better view just as the knight's eyes snap open,\n"
+        "your blood running cold with the realisation slowly dawning on you -\n\n"
+        
+        "The knight is not blind.\n\n"
+        
+        "With a firm set scowl the knight brings a firm fist, grapping you by the scruff of you neck and lifting you high into the air.\n"
+        "'How dare you think to steal MY throne!'\n"
+        "The knight bellows, mouth open so wide you can see specks of rotting flesh lodged between each teeth.\n"
+        "'Just for this I will throw you into my dungeon for you to live for eternity as my personal slave.'\n\n"
+        
+        "Everything goes black.\n\n";
+    string correctInput20 =
+        "Behind";
+    StealthRoom room20(&introMessages20, &winMessages20, &loseMessages20, &correctInput20, 2, 3);
     Room room21;
+    room21.SetDescription("l bozo");
     Room room22;
     Room room23;
     Room room30;
+    room30.SetDescription("meow");
     Room room31;
     Room room32;
     Room room33;
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-    Room rooms[4][4] = { room00, room01, room02, room03, room10, room11, room12, room13,room20,room21,room22,room23,room30,room31,room32,room33 };
+    Room* rooms[4][4] = { &room00, &room01, &room02, &room03, &room10, &room11, &room12, &room13, &room20, &room21, &room22, &room23, &room30, &room31, & room32, &room33 };
     
     int col = 0;
     int row = 0;
@@ -190,8 +260,8 @@ void Game()
     while (true)
     {
         //Runs the room and returns the direction
-        int dir = rooms[col][row].RunRoom();
-        std::cout << dir;
+        int dir = rooms[col][row]->RunRoom();
+        //std::cout << dir;
         PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
         //Processes direction (1,2,3,4) -> (N,E,S,W)
         switch (dir)
@@ -214,21 +284,21 @@ void Game()
         }
     }
 
-    rooms[0][0].OutputDescription();
+    rooms[0][0]->OutputDescription();
     int direction = room00.DirectionInput();
 
     //If east
     if (direction == 1)
     {
         PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        rooms[1][0].OutputDescription();
+        rooms[1][0]->OutputDescription();
         int direction = room10.DirectionInput();
     }
     //If south
     else if (direction == 2)
     {
         PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        rooms[0][1].OutputDescription();
+        rooms[0][1]->OutputDescription();
         int direction = room01.DirectionInput();
     }
 

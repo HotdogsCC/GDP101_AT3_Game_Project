@@ -147,6 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="SafeRoom.cpp" />
+    <ClCompile Include="StealthRoom.cpp" />
     <ClCompile Include="TalkRoom.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="Rooms.h" />
     <ClInclude Include="SafeRoom.h" />
+    <ClInclude Include="StealthRoom.h" />
     <ClInclude Include="TalkRoom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
