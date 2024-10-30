@@ -4,3 +4,4 @@
 #include "TalkRoom.h"
 #include "DeadEnd.h"
 #include "StealthRoom.h"
+#include "BattleRoom.h"

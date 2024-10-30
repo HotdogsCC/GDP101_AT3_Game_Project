@@ -11,12 +11,14 @@ using std::string;
 
 int main()
 {
+    Game();
+
     //Returns 0 to start the game
     if (Intro() == 0)
     {
         HomeScreen();
     }
-    //Game();
+    
 }
 
 int Intro()
@@ -175,7 +177,7 @@ void Game()
     Room room02;
     Room room03;
 
-    //Deallocated in the class destructor
+    //This memory is deallocated in the TaklRoom class destructor
     string* messages10 = new string[6];
     messages10[0] = 
         "You enter the room. It's dimly lit. You try to adjust your eyes to the slight increase of light, blinking rapidly but to no avail.\n"
@@ -201,7 +203,20 @@ void Game()
         "You swallow hard and nod.Accepting your fate you advance to the next room";
     TalkRoom room10(messages10, 6);
 
-    Room room11;
+    DeadEnd room11(4);
+    room11.SetDescription(
+        "Limp by limp you trawl through the hidden passageway, following the lantern lit path.\n\n"
+
+        "Along it’s walls you see ornate carvings that plaster it’s surface.\n"
+        "You see lines of script, perhaps lines of poetry written in a long lost tongue.\n"
+        "Drawings of a utopia (one far from this dungeon you’re sure) where waterfalls cascade\n"
+        "down large mountain ledges and lush forests contain all sorts of unusual animals.\n\n"
+
+        "Suddenly the path comes to an end.\n"
+        "You step through the bolted wooden door in front of you and fall into another room.\n\n"
+        "It's the dead end next to where you woke up.\n\n"
+    );
+
     Room room12;
     Room room13;
 
@@ -242,13 +257,61 @@ void Game()
     string correctInput20 =
         "Behind";
     StealthRoom room20(&introMessages20, &winMessages20, &loseMessages20, &correctInput20, 2, 3);
-    Room room21;
-    room21.SetDescription("l bozo");
+
+    DeadEnd room21(4);
+    room21.SetDescription(
+        "You land in the dungeon with a dull thud, a sharp pain rising from you knee.\n"
+        "You look down and realise your entire left leg has a huge gash down your thigh,\n"
+        "and calf while your right knee seems to be bruised and slightly swollen.\n\n"
+
+        "Suddenly, a small spec of light catches your eye.\n"
+        "Limping you advance toward it, smashing the wall in to reveal the source of the light.\n"
+        "A lantern-lit hidden passage way.\n"
+
+        "With no choice but to proceed you climb inside.\n\n");
+
     Room room22;
     Room room23;
-    Room room30;
-    room30.SetDescription("meow");
-    Room room31;
+
+    DeadEnd room30(3);
+    room30.SetDescription(
+        "Ecstatic that you made it past the knight without being spotted you release a sigh of relief.\n\n"
+        "However, this relief doesn’t last long because you hear mummuring in the next room.\n"
+        "You look around you.\n"
+        "With no where else to go you have no choice but to continue for fear that any moment could be your last.\n\n"
+    );
+
+    int* winningNums31 = new int[2];
+    winningNums31[0] = 2;
+    winningNums31[1] = 1;
+    string* winMsgs31 = new string[2];
+    winMsgs31[0] = 
+        "The minotaur is shocked, which fades into a smug confident look.\n"
+        "He charges again.\n\n"
+
+        "Do you:\n"
+        "(1) Slide under the beats legs\n"
+        "(2) Roll out the way again\n\n";
+    winMsgs31[1] = 
+        "You slide under him. He was moving on an angle, expecting you to roll.\n"
+        "You trip him up, causing him to ram his antlers into the ground, becoming lodged in a crack between two stones.\n"
+        "You run towards the next door, aware he wont be stuck for much longer.\n\n";
+    string* loseMsgs31 = new string[2];
+    loseMsgs31[0] = "You get impaled by the minotaur's antlers. You black out.\n\n";
+    loseMsgs31[1] = "The centaur anticpated your slide and stabs you. You black out.\n\n";
+    BattleRoom room31(2, winningNums31, winMsgs31, loseMsgs31, 3, 4);
+    room31.SetDescription(
+        "A new room, somewhat more mistreated than the rest.\n\n"
+
+        "As you circle to take in your surroundings you notice the deep dents settled into the wall.\n"
+        "Behind you, you hear a rattling snout, and the distinct sound of hooves on stone.\n"
+        "Swifty turning you come face to face with a furious looking minotaur that begins to charge.\n\n"
+
+        "Do you:\n"
+        "(1) Stand your ground, and tackle the beast head on.\n"
+        "(2) Role out of the way.\n\n"
+    );
+
     Room room32;
     Room room33;
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
