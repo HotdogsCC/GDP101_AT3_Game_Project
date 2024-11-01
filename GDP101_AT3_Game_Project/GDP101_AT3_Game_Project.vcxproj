@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleRoom.cpp" />
+    <ClCompile Include="ChoiceRoom.cpp" />
     <ClCompile Include="DeadEnd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleRoom.h" />
+    <ClInclude Include="ChoiceRoom.h" />
     <ClInclude Include="DeadEnd.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Room.h" />

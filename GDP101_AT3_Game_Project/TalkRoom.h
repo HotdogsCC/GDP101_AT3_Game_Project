@@ -7,7 +7,8 @@ public:
 	TalkRoom(string* _messages, int _size);
 	~TalkRoom();
 	int RunRoom() override;
-private:
+protected:
+	void DialogueStep();
 	string* messages;
 	int size;
 };

@@ -18,7 +18,7 @@ TalkRoom::~TalkRoom()
 	delete messages;
 }
 
-int TalkRoom::RunRoom()
+void TalkRoom::DialogueStep()
 {
 	//Clears screen
 	system("cls");
@@ -37,6 +37,11 @@ int TalkRoom::RunRoom()
 		system("pause");
 		system("cls");
 	}
+}
+
+int TalkRoom::RunRoom()
+{
+	DialogueStep();
 
 	//Moves east after dialogue
 	return 2;

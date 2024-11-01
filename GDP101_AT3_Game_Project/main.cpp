@@ -312,7 +312,51 @@ void Game()
         "(2) Role out of the way.\n\n"
     );
 
-    Room room32;
+    string* msgs32 = new string[9];
+    msgs32[0] =
+        "You enter the next room ridiculously out of breath after that close encounter with the minotaur's antler’s.\n\n"
+        "";
+    msgs32[1] =
+        "You hear a muffled whelp and raise your head, laying eyes on a rather small elf who is anxiously passing across the room.\n"
+        "The elf’s kind eyes and quivering chin evoke a sense of sympathy within you and you softly tread towards him,\n"
+        "panting him gently on the back to let him know of your prescence.\n\n"
+        "";
+    msgs32[2] =
+        "He jumps, quickly adjusting his glasses and peering at you. \n"
+        "Upon realising you are not harmful he hurridly apologises in a high-pitched squeak.\n"
+        "";
+    msgs32[3] =
+        "'Oo! I'm so sorry sir, I thought you were- well it doesn’t matter does it!\n"
+        "My name is Taeran.\n"
+        "I was travelling through these caverns with my two daughters Aelyia and Helenia\n"
+        "when the gruff minotaur terrified Aelylia making her run off scared while Helenia rushed after her!\n"
+        "I now don't know where they are or how to find them!\n"
+        "Poor Aelylia, she’s only seven and jumps at the sound of a pin dropping!\n"
+        "Helenia’s always been protective of her little sister ever since their mum died when they were both young,\n"
+        "and she knows I’m too frail to run after them both! Gosh I just don’t know what to do!'\n\n"
+        "";
+    msgs32[4] =
+        "The elf breaks down in sobs.\n\n"
+        "";
+    msgs32[5] =
+        "'Their mother was the love of my life and loosing her was the worst thing that’s ever happened to me.\n"
+        "I- I can’t loose my girls as well! They are all I’ve got left!\n"
+        "Please kind Sir, please help me find them! I feel so helpless!\n\n"
+        "";
+    msgs32[6] =
+        "Just then, over the loud sobs of the elf, you hear the ruff grunts of the minotaur.\n"
+        "He seems to have escaped! You both look at each other terrified.\n\n"
+        "";
+    msgs32[7] =
+        "Please, go ahead, find my daughters! I’ll hold him off as long as I can!\n\n";
+    msgs32[8] =
+        "(1) Run South\n"
+        "(2) Run West\n\n";
+    int* choicesDir32 = new int[2];
+    choicesDir32[0] = 3;
+    choicesDir32[1] = 4;
+    ChoiceRoom room32(msgs32, 9, choicesDir32);
+
     Room room33;
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
     Room* rooms[4][4] = { &room00, &room01, &room02, &room03, &room10, &room11, &room12, &room13, &room20, &room21, &room22, &room23, &room30, &room31, & room32, &room33 };

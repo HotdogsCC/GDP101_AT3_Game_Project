@@ -5,3 +5,4 @@
 #include "DeadEnd.h"
 #include "StealthRoom.h"
 #include "BattleRoom.h"
+#include "ChoiceRoom.h"
