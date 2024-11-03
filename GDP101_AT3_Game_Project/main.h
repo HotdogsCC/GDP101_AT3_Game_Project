@@ -1,5 +1,7 @@
 #pragma once
+#include "Rooms.h"
 
 int Intro();
 void HomeScreen();
-void Game();
+void LoadGame();
+void BeginGame(Room* rooms[4][4]);

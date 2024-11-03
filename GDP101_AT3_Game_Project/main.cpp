@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include "main.h"
-#include "Rooms.h"
+
 
 using std::cout;
 using std::cin;
@@ -11,7 +11,7 @@ using std::string;
 
 int main()
 {
-    Game();
+    LoadGame();
 
     //Returns 0 to start the game
     if (Intro() == 0)
@@ -143,11 +143,11 @@ void HomeScreen()
     cout << title << "\n\nPress enter to continue\n";
 
     system("pause");
-    Game();
+    LoadGame();
 }
 
 
-void Game()
+void LoadGame()
 {
     system("cls");
     //Room Instantiation
@@ -201,7 +201,7 @@ void Game()
         "Noticing your worry the troll assures you, bending down to meet your eye, his gigantic yellow orbs widening in reassurance.\n"
         "Lucky for you the knight lost all his eyesight many moons ago in a brutal battle, as long as you sneak past and don't make a single sound he will never catch you.\n\n"
         "You swallow hard and nod.Accepting your fate you advance to the next room";
-    TalkRoom room10(messages10, 6);
+    TalkRoom room10(messages10, 6, 2);
 
     DeadEnd room11(4);
     room11.SetDescription(
@@ -218,7 +218,37 @@ void Game()
     );
 
     Room room12;
-    Room room13;
+
+    string introMsgs13 =
+        "You enter a room similar to the previous knight's abode, containing two paths.\n\n"
+
+        "Once again, there is a path that goes directly in front of the knight.\n"
+        "And the other path, made of bones and twigs which goes behind the knight.\n"
+
+        "Enter 'Infront' or 'Behind': ";
+    string winMsgs13 =
+        "Reaching the throne you notice it is infact made up of a pile of bones.\n"
+        "You lean closer, attempting to get a better view just as the knight’s eyes snap open.\n"
+        "Your blood runs cold with the realisation slowly dawning...\n\n"
+
+        "The knight is blind.\n\n"
+
+        "You and the daughter successfully sneak behind the knight's throne and into the next room.\n\n";
+    string loseMsgs13 =
+        "Gulping, you tentively step one foot onto the bone trodden path.\n"
+        "A bone instantly snaps upon your weight.\n\n"
+
+        "The knight instantly looks in your direction.\n"
+        "With a firm set scowl, the knight brings a firm fist and grabs both you and the daughter.\n\n"
+        
+        "'How dare you try to leave!'\n\n"
+
+        "Everything goes black.\n\n"
+
+        "";
+    string correctInput13 = "Infront";
+    string incorrectInput13 = "Behind";
+    StealthRoom room13(&introMsgs13, &winMsgs13, &loseMsgs13, &correctInput13, &incorrectInput13, 4, 1);
 
     string introMessages20 = 
         "In front of you lie two cobblestoned paths.\n"
@@ -256,7 +286,9 @@ void Game()
         "Everything goes black.\n\n";
     string correctInput20 =
         "Behind";
-    StealthRoom room20(&introMessages20, &winMessages20, &loseMessages20, &correctInput20, 2, 3);
+    string incorrectInput20 =
+        "Infront";
+    StealthRoom room20(&introMessages20, &winMessages20, &loseMessages20, &correctInput20, &incorrectInput20, 2, 3);
 
     DeadEnd room21(4);
     room21.SetDescription(
@@ -270,8 +302,56 @@ void Game()
 
         "With no choice but to proceed you climb inside.\n\n");
 
-    Room room22;
-    Room room23;
+    string* messages22 = new string[5];
+    messages22[0] = 
+        "You run west.\n\n"
+
+        "You see the shadowed figure of a young woman.\n"
+        "As she comes into the light you notice her tough set jaw and furrowed brow.\n"
+        "You take a chance and assume she is Helenia.\n\n"
+        "";
+    messages22[1] =
+        "'Helenia? Your father sent me, I am here to save-'\n\n"
+        "";
+    messages22[2] =
+        "'Save? Save who, me? If so, you've got the wrong idea.\n"
+        "I'm here to look for my sister which is what you should be doing as well.\n"
+        "She's young, has no idea where she is and has a really bad habit of trusting people.\n"
+        "I can't believe you came after me first, she could be in real danger.'\n\n"
+        "";
+    messages22[3] =
+        "She snaps, her voice rising in volume reaching a shout.\n\n"
+        "";
+    messages22[4] =
+        "The caverns begin to shake, rocks dislodginf from the wall.\n"
+        "The room is crumbling.\n"
+        "You grab Helenia's hand against her better judgement and run away.\n\n"
+        "";
+    TalkRoom room22(messages22, 5, 3);
+
+    string* messages23 = new string[6];
+    messages23[0] =
+        "You run and run, and find yourself in a new room.\n\n"
+
+        "What remains of your previous room is rock and sand. You spy a hand poking out\n\n"
+        "";
+    messages23[1] =
+        "It's the corpse of the father elf, and the daughter you failed to save.\n\n"
+        "";
+    messages23[2] =
+        "Shielding the eys of the daughter you did save, you glance around.\n"
+        "You see a small hatch on the floor, bringing you in a west direction.\n\n"
+        "";
+    messages23[3] =
+        "'Wait,' she says.\n\n"
+        "";
+    messages23[4] =
+        "'The next room has another knight in it, it's behaviour different to the last.'\n\n"
+        "";
+    messages23[5] =
+        "You nod, and both descend down the stairs.\n\n"
+        "";
+    TalkRoom room23(messages23, 6, 4);
 
     DeadEnd room30(3);
     room30.SetDescription(
@@ -357,10 +437,39 @@ void Game()
     choicesDir32[1] = 4;
     ChoiceRoom room32(msgs32, 9, choicesDir32);
 
-    Room room33;
+    string* messages33 = new string[5];
+    messages33[0] =
+        "You run south.\n\n"
+
+        "You hear the soft sobs who you assume to be Aeylina.\n"
+        "You find her crumbled in a heap in the corner, covered by thick mossy brown hair.\n"
+        "She looks up, her big azure eyes filled with tears.\n\n"
+        "";
+    messages33[1] =
+        "'Who- who are you?' She gulps.\n\n"
+        "";
+    messages33[2] =
+        "'Have you seen my father... or- or my sister?\n"
+        "I ran away from that scary Bull-man and now I don't know what to do!'\n\n"
+        "";
+    messages33[3] =
+        "She begins to hyperventilate, her cries increasing and increasing.\n"
+        "The room begins to quiver and crumble.\n\n"
+        "";
+    messages33[4] =
+        "You grab Aeylina and run away.\n\n"
+        "";
+    TalkRoom room33(messages33, 5, 4);
+
+
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
     Room* rooms[4][4] = { &room00, &room01, &room02, &room03, &room10, &room11, &room12, &room13, &room20, &room21, &room22, &room23, &room30, &room31, & room32, &room33 };
     
+    BeginGame(rooms);
+}
+
+void BeginGame(Room* rooms[4][4])
+{
     int col = 0;
     int row = 0;
     //game loop
@@ -386,28 +495,8 @@ void Game()
             col += -1;
             break;
         default:
-            std::cout << "what";
+            std::cout << "Incorrect Direction";
             return;
         }
     }
-
-    rooms[0][0]->OutputDescription();
-    int direction = room00.DirectionInput();
-
-    //If east
-    if (direction == 1)
-    {
-        PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        rooms[1][0]->OutputDescription();
-        int direction = room10.DirectionInput();
-    }
-    //If south
-    else if (direction == 2)
-    {
-        PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        rooms[0][1]->OutputDescription();
-        int direction = room01.DirectionInput();
-    }
-
-    system("pause");
 }

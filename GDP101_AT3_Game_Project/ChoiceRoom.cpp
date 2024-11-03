@@ -24,10 +24,11 @@ int ChoiceRoom::RunRoom()
 	}
 
 	string input;
-	std::cin >> input;
+	
 
 	while (true)
 	{
+		std::cin >> input;
 		if (input.compare("1") == 0)
 		{
 			return choicesDir[0];
@@ -39,6 +40,7 @@ int ChoiceRoom::RunRoom()
 		else
 		{
 			std::cout << "\nThat input wasn't recognised, try again: ";
+			input = "";
 		}
 	}
 }

@@ -7,10 +7,11 @@ TalkRoom::TalkRoom()
 	size = 0;
 }
 
-TalkRoom::TalkRoom(string* _messages, int _size)
+TalkRoom::TalkRoom(string* _messages, int _size, int _dir)
 {
 	messages = _messages;
 	size = _size;
+	dir = _dir;
 }
 
 TalkRoom::~TalkRoom()
@@ -42,7 +43,5 @@ void TalkRoom::DialogueStep()
 int TalkRoom::RunRoom()
 {
 	DialogueStep();
-
-	//Moves east after dialogue
-	return 2;
+	return dir;
 }
