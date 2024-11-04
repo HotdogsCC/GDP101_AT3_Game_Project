@@ -1,6 +1,7 @@
 #pragma once
 #include "Rooms.h"
 
+//Reference to all functions
 int Intro();
 void HomeScreen();
 void LoadGame();

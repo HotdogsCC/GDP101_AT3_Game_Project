@@ -1,11 +1,14 @@
 #include "TalkRoom.h"
 #include <iostream>
 
+//Default constructor. Never called in code, but called when inherrited by ChoiceRoom()
 TalkRoom::TalkRoom()
 {
 	messages = nullptr;
 	size = 0;
+	dir = 0;
 }
+
 
 TalkRoom::TalkRoom(string* _messages, int _size, int _dir)
 {
@@ -14,10 +17,6 @@ TalkRoom::TalkRoom(string* _messages, int _size, int _dir)
 	dir = _dir;
 }
 
-TalkRoom::~TalkRoom()
-{
-	delete messages;
-}
 
 void TalkRoom::DialogueStep()
 {

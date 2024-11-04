@@ -1,15 +1,13 @@
 #include "DeadEnd.h"
 #include <iostream>
 
-DeadEnd::DeadEnd()
+//sets direction
+DeadEnd::DeadEnd(int direction)
 {
-	description = "Null.";
-}
-DeadEnd::DeadEnd(int returnDirection)
-{
-	returnDir = returnDirection;
+	returnDir = direction;
 }
 
+//outputs text then returns the next direction to move in
 int DeadEnd::RunRoom()
 {
 	OutputDescription();

@@ -1,5 +1,6 @@
 #include "SafeRoom.h"
 
+//Safe room is only used for spawn. Cleaner to assign in the class, rather than elsewhere.
 SafeRoom::SafeRoom()
 {
 	description =

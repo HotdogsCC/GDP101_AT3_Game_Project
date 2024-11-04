@@ -1,6 +1,8 @@
 #include "BattleRoom.h"
 #include <iostream>
 
+//Takes in the amount of battles, the correct inputs, the correct dialogue, the incorrect dialogue, 
+// the direction upon winning, and the direction upon losing
 BattleRoom::BattleRoom(int _battles, int* _winningNums, string* _winDialogue, string* _loseDialogue, int _winDir, int _loseDir)
 {
 	battles = _battles;
@@ -11,6 +13,7 @@ BattleRoom::BattleRoom(int _battles, int* _winningNums, string* _winDialogue, st
 	loseDir = _loseDir;
 }
 
+//Override for default room class
 int BattleRoom::RunRoom()
 {
 	//Intro dialogue

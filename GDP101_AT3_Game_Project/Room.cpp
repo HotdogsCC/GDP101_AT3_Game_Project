@@ -3,12 +3,14 @@
 using std::cout;
 using std::cin;
 
+//outputs description
 void Room::OutputDescription()
 {
 	system("cls");
 	cout << this->description;
 }
 
+//waits for valid input and returns direction (kind of under used)
 int Room::DirectionInput()
 {
 	string input;

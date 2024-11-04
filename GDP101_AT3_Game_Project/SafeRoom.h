@@ -3,6 +3,7 @@
 class SafeRoom : public Room
 {
 public:
+	//Default constructor
 	SafeRoom();
 };
 

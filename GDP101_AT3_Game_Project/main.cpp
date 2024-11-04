@@ -11,13 +11,13 @@ using std::string;
 
 int main()
 {
-    LoadGame();
-
     //Returns 0 to start the game
     if (Intro() == 0)
     {
         HomeScreen();
     }
+
+    return 0;
     
 }
 
@@ -174,10 +174,14 @@ void LoadGame()
 
         "You should probably go back.\n\n");
 
-    Room room02;
-    Room room03;
+    DeadEnd room02(3);
+    room02.SetDescription("You walk down the passage, reflecting on what you did.\n"
+        "If you avoided that knight, you never would have had to give up the girl.\n\n"
+        "You see the exit.\n");
 
-    //This memory is deallocated in the TaklRoom class destructor
+    DeadEnd room03(0);
+    room03.SetDescription("\033[0;32mYou escaped the Dungeon.\n\n");
+
     string* messages10 = new string[6];
     messages10[0] = 
         "You enter the room. It's dimly lit. You try to adjust your eyes to the slight increase of light, blinking rapidly but to no avail.\n"
@@ -207,9 +211,9 @@ void LoadGame()
     room11.SetDescription(
         "Limp by limp you trawl through the hidden passageway, following the lantern lit path.\n\n"
 
-        "Along it’s walls you see ornate carvings that plaster it’s surface.\n"
+        "Along it's walls you see ornate carvings that plaster it's surface.\n"
         "You see lines of script, perhaps lines of poetry written in a long lost tongue.\n"
-        "Drawings of a utopia (one far from this dungeon you’re sure) where waterfalls cascade\n"
+        "Drawings of a utopia (one far from this dungeon you're sure) where waterfalls cascade\n"
         "down large mountain ledges and lush forests contain all sorts of unusual animals.\n\n"
 
         "Suddenly the path comes to an end.\n"
@@ -217,7 +221,13 @@ void LoadGame()
         "It's the dead end next to where you woke up.\n\n"
     );
 
-    Room room12;
+    DeadEnd room12(4);
+    room12.SetDescription("You awaken.\n\n"
+    "'I'll make you a deal,' the knight says.'\n"
+    "'If you give me that young lady of yours, I'll let you leave.'\n\n"
+    "Your moral code wants to say no, but your selfishness wins.\n\n"
+    "The child looks at you in sheer horror, before both her and the knight vanish into the dark.\n"
+    "The door opens\n\n.");
 
     string introMsgs13 =
         "You enter a room similar to the previous knight's abode, containing two paths.\n\n"
@@ -228,7 +238,7 @@ void LoadGame()
         "Enter 'Infront' or 'Behind': ";
     string winMsgs13 =
         "Reaching the throne you notice it is infact made up of a pile of bones.\n"
-        "You lean closer, attempting to get a better view just as the knight’s eyes snap open.\n"
+        "You lean closer, attempting to get a better view just as the knight's eyes snap open.\n"
         "Your blood runs cold with the realisation slowly dawning...\n\n"
 
         "The knight is blind.\n\n"
@@ -255,19 +265,19 @@ void LoadGame()
         "One path winds all the way to the base of the knights throne while the other leads beyond your line of vison, half covered by... is that bones?\n"
         "If so, they seem human.\n\n"
 
-        "Do you take the path infront of the knight, whom you’ve been told cannot see?\n"
+        "Do you take the path infront of the knight, whom you've been told cannot see?\n"
         "Or, take the path behind the knight covered in the bones of your predecessors and possibly soon yours.\n\n"
         
         "Enter 'Infront' or 'Behind': ";
     string winMessages20 =
         "Gulping, you tentively step one foot onto the bone trodden path, a bone immediately snapping under your weight.\n"
-        "You wince as the bone’s crunch reverberates off the stone walls but the knight doesn't react in the slightest.\n"
+        "You wince as the bone's crunch reverberates off the stone walls but the knight doesn't react in the slightest.\n"
         "Confused you take another step onto another pile of bones and another crunch, much louder this time.\n"
         "Echoes around the room but yet no reaction from the knight.\n\n"
 
         "The troll lied.\n\n"
 
-        "You leap forward in glee, advancing further through the room and around the Knight’s throne successfully without alerting him.\n"
+        "You leap forward in glee, advancing further through the room and around the Knight's throne successfully without alerting him.\n"
         "This quest will not be easy but you have to remember to keep your wits about you as you realise...\n\n"
 
         "No one can be trusted.\n\n";
@@ -323,7 +333,7 @@ void LoadGame()
         "She snaps, her voice rising in volume reaching a shout.\n\n"
         "";
     messages22[4] =
-        "The caverns begin to shake, rocks dislodginf from the wall.\n"
+        "The caverns begin to shake, rocks dislodging from the wall.\n"
         "The room is crumbling.\n"
         "You grab Helenia's hand against her better judgement and run away.\n\n"
         "";
@@ -356,7 +366,7 @@ void LoadGame()
     DeadEnd room30(3);
     room30.SetDescription(
         "Ecstatic that you made it past the knight without being spotted you release a sigh of relief.\n\n"
-        "However, this relief doesn’t last long because you hear mummuring in the next room.\n"
+        "However, this relief doesn't last long because you hear mummuring in the next room.\n"
         "You look around you.\n"
         "With no where else to go you have no choice but to continue for fear that any moment could be your last.\n\n"
     );
@@ -394,11 +404,11 @@ void LoadGame()
 
     string* msgs32 = new string[9];
     msgs32[0] =
-        "You enter the next room ridiculously out of breath after that close encounter with the minotaur's antler’s.\n\n"
+        "You enter the next room ridiculously out of breath after that close encounter with the minotaur's antler's.\n\n"
         "";
     msgs32[1] =
         "You hear a muffled whelp and raise your head, laying eyes on a rather small elf who is anxiously passing across the room.\n"
-        "The elf’s kind eyes and quivering chin evoke a sense of sympathy within you and you softly tread towards him,\n"
+        "The elf's kind eyes and quivering chin evoke a sense of sympathy within you and you softly tread towards him,\n"
         "panting him gently on the back to let him know of your prescence.\n\n"
         "";
     msgs32[2] =
@@ -406,21 +416,21 @@ void LoadGame()
         "Upon realising you are not harmful he hurridly apologises in a high-pitched squeak.\n"
         "";
     msgs32[3] =
-        "'Oo! I'm so sorry sir, I thought you were- well it doesn’t matter does it!\n"
+        "'Oo! I'm so sorry sir, I thought you were- well it doesn't matter does it!\n"
         "My name is Taeran.\n"
         "I was travelling through these caverns with my two daughters Aelyia and Helenia\n"
         "when the gruff minotaur terrified Aelylia making her run off scared while Helenia rushed after her!\n"
         "I now don't know where they are or how to find them!\n"
-        "Poor Aelylia, she’s only seven and jumps at the sound of a pin dropping!\n"
-        "Helenia’s always been protective of her little sister ever since their mum died when they were both young,\n"
-        "and she knows I’m too frail to run after them both! Gosh I just don’t know what to do!'\n\n"
+        "Poor Aelylia, she's only seven and jumps at the sound of a pin dropping!\n"
+        "Helenia's always been protective of her little sister ever since their mum died when they were both young,\n"
+        "and she knows I'm too frail to run after them both! Gosh I just don't know what to do!'\n\n"
         "";
     msgs32[4] =
         "The elf breaks down in sobs.\n\n"
         "";
     msgs32[5] =
-        "'Their mother was the love of my life and loosing her was the worst thing that’s ever happened to me.\n"
-        "I- I can’t loose my girls as well! They are all I’ve got left!\n"
+        "'Their mother was the love of my life and loosing her was the worst thing that's ever happened to me.\n"
+        "I- I can't loose my girls as well! They are all I've got left!\n"
         "Please kind Sir, please help me find them! I feel so helpless!\n\n"
         "";
     msgs32[6] =
@@ -428,7 +438,7 @@ void LoadGame()
         "He seems to have escaped! You both look at each other terrified.\n\n"
         "";
     msgs32[7] =
-        "Please, go ahead, find my daughters! I’ll hold him off as long as I can!\n\n";
+        "Please, go ahead, find my daughters! I'll hold him off as long as I can!\n\n";
     msgs32[8] =
         "(1) Run South\n"
         "(2) Run West\n\n";
@@ -461,11 +471,26 @@ void LoadGame()
         "";
     TalkRoom room33(messages33, 5, 4);
 
-
+    //Plays door creak
     PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+
+    //Instatiates room 2D array
     Room* rooms[4][4] = { &room00, &room01, &room02, &room03, &room10, &room11, &room12, &room13, &room20, &room21, &room22, &room23, &room30, &room31, & room32, &room33 };
     
+    //Game loop
     BeginGame(rooms);
+
+    //Dealocation
+    delete[] messages10;
+    delete[] messages22;
+    delete[] messages23;
+    delete[] winningNums31;
+    delete[] winMsgs31;
+    delete[] loseMsgs31;
+    delete[] msgs32;
+    delete[] choicesDir32;
+    delete[] messages33;
+
 }
 
 void BeginGame(Room* rooms[4][4])
@@ -477,7 +502,13 @@ void BeginGame(Room* rooms[4][4])
     {
         //Runs the room and returns the direction
         int dir = rooms[col][row]->RunRoom();
-        //std::cout << dir;
+
+        //Checks if game is over
+        if (col == 0 && row == 3)
+        {
+            return;
+        }
+
         PlaySound(TEXT("creak1.wav"), NULL, SND_FILENAME | SND_ASYNC);
         //Processes direction (1,2,3,4) -> (N,E,S,W)
         switch (dir)
